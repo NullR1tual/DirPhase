@@ -1,0 +1,1 @@
+print("Bulk File Organizer is running!")
