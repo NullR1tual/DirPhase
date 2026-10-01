@@ -183,3 +183,4 @@ cython_debug/
 # Local PyCharm settings and project environment
 .idea/
 .venv/
+test_files/
