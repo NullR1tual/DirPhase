@@ -17,5 +17,12 @@ for item in test_folder.iterdir():
         category = "Other"
 
     destination_folder = test_folder / category
+    destination_folder.mkdir(exist_ok=True)
     destination = destination_folder / item.name
-    print(item, "->", destination)
+
+    if destination.exists():
+        print("Skipped (already exists):", destination)
+        continue
+
+    item.rename(destination)
+    print("Moved:", item.name, "->", destination)
