@@ -1,5 +1,13 @@
 from pathlib import Path
 
+def category_for(file_extension):
+    if file_extension in {".jpg", ".jpeg", ".png"}:
+        return "Images"
+    elif file_extension in {".txt", ".pdf", ".docx"}:
+        return "Documents"
+    else:
+        return "Other"
+
 project_folder = Path(__file__).parent
 test_folder = project_folder / "test_files"
 
@@ -8,13 +16,7 @@ for item in test_folder.iterdir():
         continue
 
     extension = item.suffix.lower()
-
-    if extension in {".jpg", ".jpeg", ".png"}:
-        category = "Images"
-    elif extension in {".txt", ".pdf", ".docx"}:
-        category = "Documents"
-    else:
-        category = "Other"
+    category = category_for(extension)
 
     destination_folder = test_folder / category
     destination_folder.mkdir(exist_ok=True)
