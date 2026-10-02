@@ -12,7 +12,7 @@ project_folder = Path(__file__).parent
 test_folder = project_folder / "test_files"
 
 moved_count = 0
-skipped_count = 0
+renamed_count = 0
 
 for item in test_folder.iterdir():
     if not item.is_file():
@@ -25,13 +25,16 @@ for item in test_folder.iterdir():
     destination_folder.mkdir(exist_ok=True)
     destination = destination_folder / item.name
 
-    if destination.exists():
-        skipped_count += 1
-        print("Skipped (already exists):", destination)
-        continue
+    number = 2
+    while destination.exists():
+        destination = destination_folder / f"{item.stem}_{number}{item.suffix}"
+        number += 1
+
+    if number > 2:
+        renamed_count += 1
 
     item.rename(destination)
     moved_count += 1
     print("Moved:", item.name, "->", destination)
 
-print("Finished. Moved:", moved_count, "Skipped:", skipped_count)
+print("Finished. Moved:", moved_count, "Renamed:", renamed_count)
