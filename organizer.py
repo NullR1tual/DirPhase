@@ -11,6 +11,9 @@ def category_for(file_extension):
 project_folder = Path(__file__).parent
 test_folder = project_folder / "test_files"
 
+if not test_folder.is_dir():
+    raise SystemExit(f"Folder not found: {test_folder}")
+
 moved_count = 0
 renamed_count = 0
 
