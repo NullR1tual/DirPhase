@@ -8,23 +8,33 @@ def category_for(file_extension):
     else:
         return "Other"
 
-project_folder = Path(__file__).parent
-test_folder = project_folder / "test_files"
+folder_text = input("Enter the folder to organize: ").strip()
 
-if not test_folder.is_dir():
-    raise SystemExit(f"Folder not found: {test_folder}")
+if not folder_text:
+    raise SystemExit("No folder entered.")
+
+source_folder = Path(folder_text)
+
+if not source_folder.is_dir():
+    raise SystemExit(f"Folder not found: {source_folder}")
+
+print("Selected folder:", source_folder.resolve())
+
+confirmation = input("Type ORGANIZE to move its files:").strip()
+if confirmation != "ORGANIZE":
+    raise SystemExit("Cancelled. No files moved.")
 
 moved_count = 0
 renamed_count = 0
 
-for item in test_folder.iterdir():
+for item in source_folder.iterdir():
     if not item.is_file():
         continue
 
     extension = item.suffix.lower()
     category = category_for(extension)
 
-    destination_folder = test_folder / category
+    destination_folder = source_folder / category
     destination_folder.mkdir(exist_ok=True)
     destination = destination_folder / item.name
 
