@@ -24,17 +24,29 @@ if not source_folder.is_dir():
 
 print("Selected folder:", source_folder.resolve())
 print("\nPreview:")
-preview_count = 0
+planned_moves = []
+reserved_destinations = set()
 
-for item in source_folder.iterdir():
-    if item.is_file():
-        category = category_for(item.suffix.lower())
-        print(f"{item.name} -> {category}/")
-        preview_count += 1
+for item in sorted(source_folder.iterdir()):
+    if not item.is_file():
+        continue
 
-print("Files to organize:", preview_count)
+    category = category_for(item.suffix.lower())
+    destination_folder = source_folder / category
+    destination = destination_folder / item.name
 
-if preview_count == 0:
+    number = 2
+    while destination.exists() or destination in reserved_destinations:
+        destination = destination_folder / f"{item.stem}_{number}{item.suffix}"
+        number += 1
+
+    planned_moves.append((item, destination))
+    reserved_destinations.add(destination)
+    print(f"{item.name} -> {destination.relative_to(source_folder)}")
+
+print("Files to organize:", len(planned_moves))
+
+if len(planned_moves) == 0:
     raise SystemExit("No files to organize.")
 
 confirmation = input("Type ORGANIZE to move its files:").strip()
@@ -44,27 +56,18 @@ if confirmation != "ORGANIZE":
 moved_count = 0
 renamed_count = 0
 
-for item in source_folder.iterdir():
-    if not item.is_file():
-        continue
+for item, destination in planned_moves:
+    destination.parent.mkdir(exist_ok=True)
 
-    extension = item.suffix.lower()
-    category = category_for(extension)
-
-    destination_folder = source_folder / category
-    destination_folder.mkdir(exist_ok=True)
-    destination = destination_folder / item.name
-
-    number = 2
-    while destination.exists():
-        destination = destination_folder / f"{item.stem}_{number}{item.suffix}"
-        number += 1
-
-    if number > 2:
-        renamed_count += 1
+    if destination.exists():
+        raise SystemExit(f"Destination appeared after preview: {destination}")
 
     item.rename(destination)
     moved_count += 1
+
+    if item.name != destination.name:
+        renamed_count += 1
+
     print("Moved:", item.name, "->", destination)
 
 print("Finished. Moved:", moved_count, "Renamed:", renamed_count)
