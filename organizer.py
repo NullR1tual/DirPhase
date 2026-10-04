@@ -24,10 +24,19 @@ if not source_folder.is_dir():
 
 print("Selected folder:", source_folder.resolve())
 print("\nPreview:")
+preview_count = 0
+
 for item in source_folder.iterdir():
     if item.is_file():
         category = category_for(item.suffix.lower())
         print(f"{item.name} -> {category}/")
+        preview_count += 1
+
+print("Files to organize:", preview_count)
+
+if preview_count == 0:
+    raise SystemExit("No files to organize.")
+
 confirmation = input("Type ORGANIZE to move its files:").strip()
 if confirmation != "ORGANIZE":
     raise SystemExit("Cancelled. No files moved.")
