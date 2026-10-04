@@ -5,6 +5,10 @@ def category_for(file_extension):
         return "Images"
     elif file_extension in {".txt", ".pdf", ".docx"}:
         return "Documents"
+    elif file_extension in {".mp4", ".mov", ".avi", ".webm", ".wmv"}:
+        return "Videos"
+    elif file_extension in {".wav", ".aif", ".aiff", ".flac", ".m4a", ".mp3", ".aac", ".oga", ".wma"}:
+        return "Audio"
     else:
         return "Other"
 
@@ -19,7 +23,11 @@ if not source_folder.is_dir():
     raise SystemExit(f"Folder not found: {source_folder}")
 
 print("Selected folder:", source_folder.resolve())
-
+print("\nPreview:")
+for item in source_folder.iterdir():
+    if item.is_file():
+        category = category_for(item.suffix.lower())
+        print(f"{item.name} -> {category}/")
 confirmation = input("Type ORGANIZE to move its files:").strip()
 if confirmation != "ORGANIZE":
     raise SystemExit("Cancelled. No files moved.")
