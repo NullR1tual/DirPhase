@@ -23,13 +23,13 @@ DirPhase is currently a **command-line Python script**, not a packaged desktop a
 
 ## Features
 
-- **Automatic categorization** — sorts files into `Images`, `Documents`, `Videos`, `Audio`, or `Other` based on extension.
-- **Move preview** — lists every proposed move before changing files.
-- **Explicit confirmation** — requires you to type `ORGANIZE` to proceed; anything else cancels.
-- **Duplicate filename handling** — uses names like `photo_2.jpg` when a destination filename is already taken.
-- **Case-insensitive extension matching** — recognizes `.JPG` the same way as `.jpg`.
-- **Simple summary** — reports the number of files moved and renamed.
-- **No third-party dependencies** — built with Python's `pathlib` module.
+- **Automatic categorization** - sorts files into `Images`, `Documents`, `Videos`, `Audio`, or `Other` based on extension.
+- **Move preview** - lists every proposed move before changing files.
+- **Explicit confirmation** - requires you to type `ORGANIZE` to proceed; anything else cancels.
+- **Duplicate filename handling** - uses names like `photo_2.jpg` when a destination filename is already taken.
+- **Case-insensitive extension matching** - recognizes `.JPG` the same way as `.jpg`.
+- **Simple summary** - reports the number of files moved and renamed.
+- **No third-party dependencies** - built with Python's `pathlib` module.
 
 ## Before and after
 
