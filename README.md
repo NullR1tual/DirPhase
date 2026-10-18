@@ -120,7 +120,7 @@ Moved: presentation.mp4 -> C:\Users\YourName\Downloads\Videos\presentation.mp4
 Finished. Moved: 4 Renamed: 0
 ```
 
-**Nothing moves unless you type `ORGANIZE` exactly.** Press Enter without typing it—or type anything else—to cancel.
+**Nothing moves unless you type `ORGANIZE` exactly.** Press Enter without typing it, or type anything else, to cancel.
 
 ## Supported file types
 
