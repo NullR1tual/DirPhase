@@ -12,6 +12,16 @@ def category_for(file_extension):
     else:
         return "Other"
 
+def available_destination(item, destination_folder, reserved_destinations):
+    destination = destination_folder / item.name
+    number = 2
+
+    while destination.exists() or destination in reserved_destinations:
+        destination = destination_folder / f"{item.stem}_{number}{item.suffix}"
+        number += 1
+
+    return destination
+
 folder_text = input("Enter the folder to organize: ").strip()
 
 if not folder_text:
@@ -33,12 +43,8 @@ for item in sorted(source_folder.iterdir()):
 
     category = category_for(item.suffix.lower())
     destination_folder = source_folder / category
-    destination = destination_folder / item.name
 
-    number = 2
-    while destination.exists() or destination in reserved_destinations:
-        destination = destination_folder / f"{item.stem}_{number}{item.suffix}"
-        number += 1
+    destination = available_destination(item, destination_folder, reserved_destinations)
 
     planned_moves.append((item, destination))
     reserved_destinations.add(destination)
