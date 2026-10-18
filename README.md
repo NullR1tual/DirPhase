@@ -171,7 +171,7 @@ Please discuss substantial changes in an issue before opening a pull request. Th
 
 DirPhase is made available under the **[PolyForm Noncommercial License 1.0.0](LICENSE.md)**. See the [copyright notice](NOTICE).
 
-The license permits uses within its defined scope, including noncommercial use and certain organizational exceptions. Uses outside those permissions—such as commercial exploitation not otherwise permitted by the license—require separate authorization from the copyright holder.
+The license permits uses within its defined scope, including noncommercial use and certain organizational exceptions. Uses outside those permissions, such as commercial exploitation not otherwise permitted by the license, require separate authorization from the copyright holder.
 
 For commercial licensing inquiries, contact the maintainer through the [GitHub profile](https://github.com/NullR1tual). The full [license text](LICENSE.md) controls if it differs from this summary.
 
