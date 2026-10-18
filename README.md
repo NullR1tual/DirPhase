@@ -2,7 +2,7 @@
   <img src="assets/dirphase-github-logo.png" alt="DirPhase — file organization utility" width="720">
 
   <p><strong>Put your files in their place.</strong></p>
-  <p>A lightweight Python command-line utility that organizes files into folders by type—without moving anything until you approve the plan.</p>
+  <p>A lightweight Python command-line utility that organizes files into folders by type, without moving anything until you approve the plan.</p>
 
   <p>
     <img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python 3.x">
